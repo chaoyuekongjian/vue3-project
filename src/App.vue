@@ -11,9 +11,6 @@ function handleClick() {
 </script>
 
 <template>
-  <div>{{ name }}</div>
-  <div>{{ getFullName }}</div>
-  <el-button @click="handleClick">add</el-button>
   <router-view />
 </template>
 
