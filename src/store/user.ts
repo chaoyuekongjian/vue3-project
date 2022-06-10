@@ -1,23 +1,16 @@
-import { defineStore } from "pinia";
+import { ref } from 'vue';
+import { defineStore } from 'pinia';
 
-export const useUserStore = defineStore({
-  id: 'user', // id必须，需要唯一
-  state: () => {
-    return {
-      name: '张三'
-    }
-  },
-  getters: {
-    getFullName: (state) => {
-      return state.name + '丰'
-    }
-  },
-  actions: {
-    updateName(name: string): void {
-      this.name = name
-    }
-  },
-  persist: {
-    enabled: true
+// 使用setup模式定义
+export const useUserStore = defineStore('counterForSetup', () => {
+  const count = ref<number>(1);
+  function increment() {
+    count.value++;
   }
-})
+
+  function doubleCount() {
+    return count.value * 2;
+  }
+
+  return { count, increment, doubleCount };
+});

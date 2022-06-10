@@ -1,16 +1,14 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { useUserStore } from '@/store/user';
+import appStore from '@/store';
 
-const userStore = useUserStore()
-const { name, getFullName } = storeToRefs(userStore)
-
-function handleClick() {
-  userStore.updateName('李四')
-}
+// setup composition API模式
+const { count } = storeToRefs(appStore.useUserStore);
+const { increment, doubleCount } = appStore.useUserStore;
 </script>
 
 <template>
+  {{ doubleCount() }}
   <router-view />
 </template>
 

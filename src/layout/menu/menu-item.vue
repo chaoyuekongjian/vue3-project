@@ -4,7 +4,7 @@
     <!-- 存在下级目录 -->
       <template #title>
         <el-icon>
-          <location />
+          <component class="icons" :is="menu.meta.icon" />
         </el-icon>
         <span>{{ menu.meta.title }}</span>
       </template>
@@ -12,7 +12,7 @@
     </el-sub-menu>
     <el-menu-item v-else :index="menu.path" style="color: #f4f4f5">
       <!-- 不存在下级目录 -->
-      <el-icon><AddLocation /></el-icon>
+      <el-icon><component class="icons" :is="menu.meta.icon" /></el-icon>
       <span>{{ menu.meta.title }}</span>
     </el-menu-item>
   </template>
@@ -20,3 +20,10 @@
 <script setup lang="ts">
 defineProps(['menuList'])
 </script>
+
+<style scoped>
+.icons{
+  width: 24px;
+  height: 18px;
+}
+</style>

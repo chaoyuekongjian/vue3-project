@@ -1,4 +1,5 @@
 <template>
+  <MenuLogo />
   <el-menu default-active="2" class="el-menu-vertical-demo" background-color="#304156" :collapse="isCollapse" @open="handleOpen"
     @close="handleClose">
     <MenuItem :menuList="menuList" />
@@ -8,6 +9,7 @@
 <script lang="ts" setup>
 import { ref, reactive } from 'vue'
 import MenuItem from './menu-item.vue'
+import MenuLogo from './menu-logo.vue'
 let menuList = reactive([
   {
     path: "/dashboard",

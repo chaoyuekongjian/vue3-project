@@ -17,5 +17,17 @@ export default defineConfig({
         replacement: resolve(__dirname, 'src')
       }
     ]
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          // 将pinia的全局库实例打包进vendor，避免和页面一起打包造成资源重复引入
+          if (id.includes(resolve(__dirname, '/src/store/index.ts'))) {
+            return 'vendor';
+          }
+        }
+      }
+    }
   }
 })

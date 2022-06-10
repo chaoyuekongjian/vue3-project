@@ -1,7 +1,14 @@
-import { createPinia } from 'pinia'
-import piniaPluginPersist from 'pinia-plugin-persist'
+import { createPinia } from 'pinia';
+import { useUserStore } from './user';
 
-const store = createPinia()
-store.use(piniaPluginPersist)
+export interface IAppStore {
+  useUserStore: ReturnType<typeof useUserStore>;
+}
 
-export default store
+const appStore: IAppStore = {} as IAppStore;
+
+export const registerStore = () => {
+  appStore.useUserStore = useUserStore()
+}
+
+export default appStore;
