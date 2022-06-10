@@ -1,9 +1,8 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
 
-// 使用setup模式定义
-export const useUserStore = defineStore('counterForSetup', () => {
-  const count = ref<number>(1);
+export const useUserStoreForSetup = defineStore('useUserStoreForSetup', () => {
+  const count = ref(1);
   function increment() {
     count.value++;
   }

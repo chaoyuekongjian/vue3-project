@@ -1,14 +1,20 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import appStore from '@/store';
+import { useUserStoreForSetup } from '@/store/useUserStoreForSetup';
 
+const userStore = useUserStoreForSetup()
+const { count } = storeToRefs(userStore)
 // setup composition API模式
-const { count } = storeToRefs(appStore.useUserStore);
-const { increment, doubleCount } = appStore.useUserStore;
+const { increment } = userStore;
+
+function handleClick() {
+  increment()
+}
 </script>
 
 <template>
-  {{ doubleCount() }}
+  {{ count }}
+  <el-button @click="handleClick">add</el-button>
   <router-view />
 </template>
 
