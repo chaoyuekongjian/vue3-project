@@ -18,7 +18,8 @@ const { changeCollapse } = userStore
 .fa-icons {
   display: flex;
   align-items: center;
-  font-size: 24px;
+  font-size: 20px;
+  margin-right: 16px;
   .icons {
     color: #303133;
   }

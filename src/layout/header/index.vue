@@ -1,9 +1,9 @@
 <template>
-  <div class="cursor">
     <Collapse />
-  </div>
+    <Breadcrumb />
 </template>
 
 <script setup lang="ts">
-import Collapse from "./collapse.vue"
+import Collapse from './collapse.vue'
+import Breadcrumb from './breadcrumb.vue'
 </script>
