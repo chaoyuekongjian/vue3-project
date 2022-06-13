@@ -1,6 +1,6 @@
 <template>
   <el-container class="layout">
-    <el-aside width="auto" class="aside">
+    <el-aside width="auto" class="asside">
       <MenuBar />
     </el-aside>
     <el-container>

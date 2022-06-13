@@ -1,4 +1,5 @@
 <template>
+  <MenuLogo v-if="!isCollapse" />
   <el-menu 
     :default-active="activeIndex" 
     class="el-menu-vertical-demo" 
@@ -10,7 +11,6 @@
   >
     <MenuItem :menuList="menuList" />
   </el-menu>
-  <MenuLogo v-if="!isCollapse" />
 </template>
 
 <script lang="ts" setup>
@@ -145,13 +145,7 @@ const handleClose = (key: string, keyPath: string[]) => {
 <style scoped>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
-  height: calc(100% - 50px);
-  padding-top: 50px;
-  margin-bottom: -50px;
-}
-
-.el-menu-vertical-demo.el-menu--collapse {
-  height: 100%;
+  min-height: 400px;
 }
 
 .el-menu {
