@@ -1,15 +1,30 @@
 <template>
-  <MenuLogo />
-  <el-menu default-active="2" class="el-menu-vertical-demo" background-color="#304156" :collapse="isCollapse" @open="handleOpen"
-    @close="handleClose">
+  <el-menu 
+    :default-active="activeIndex" 
+    class="el-menu-vertical-demo" 
+    background-color="#304156" 
+    :collapse="isCollapse"
+    @open="handleOpen" 
+    @close="handleClose"
+    router
+  >
     <MenuItem :menuList="menuList" />
   </el-menu>
+  <MenuLogo v-if="!isCollapse" />
 </template>
 
 <script lang="ts" setup>
+import { computed } from '@vue/reactivity';
 import { ref, reactive } from 'vue'
+import { useRoute } from 'vue-router';
 import MenuItem from './menu-item.vue'
 import MenuLogo from './menu-logo.vue'
+import appStore from '@/store/index'
+import { storeToRefs } from 'pinia';
+import { useUserStoreForSetup } from '@/store/useUserStoreForSetup';
+
+const userStore = useUserStoreForSetup()
+const { isCollapse } = storeToRefs(userStore)
 let menuList = reactive([
   {
     path: "/dashboard",
@@ -111,38 +126,55 @@ let menuList = reactive([
   }
 ])
 
+const { routers } = storeToRefs(appStore.permission)
 
-const isCollapse = ref(false)
+const route = useRoute()
+const activeIndex = computed(() => {
+  return route.path
+})
+
+
 const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
+  // console.log(key, keyPath)
 }
 const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
+  // console.log(key, keyPath)
 }
 </script>
 
 <style scoped>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
-  height: 100%;
-}
-.el-menu{
-  border-right: none;
-}
-:deep(.el-sub-menu .el-sub-menu__title){
-  color: #f4f4f5 !important;
-}
-:deep(.el-menu .el-menu-item){
-  color: #bfcbd9;
-}
-:deep(.el-menu-item.is-active){
-  color: #409eff !important;
-}
-:deep(.is-opened .el-menu-item){
-  background-color: #1f2d3d !important;
-}
-:deep(.el-menu-item:hover){
-  background-color: #001528 !important;
+  height: calc(100% - 50px);
+  padding-top: 50px;
+  margin-bottom: -50px;
 }
 
+.el-menu-vertical-demo.el-menu--collapse {
+  height: 100%;
+}
+
+.el-menu {
+  border-right: none;
+}
+
+:deep(.el-sub-menu .el-sub-menu__title) {
+  color: #f4f4f5 !important;
+}
+
+:deep(.el-menu .el-menu-item) {
+  color: #bfcbd9;
+}
+
+:deep(.el-menu-item.is-active) {
+  color: #409eff !important;
+}
+
+:deep(.is-opened .el-menu-item) {
+  background-color: #1f2d3d !important;
+}
+
+:deep(.el-menu-item:hover) {
+  background-color: #001528 !important;
+}
 </style>

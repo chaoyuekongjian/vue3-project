@@ -8,7 +8,7 @@
         <Header />
       </el-header>
       <el-main class="main">
-        Main
+        <router-view />
       </el-main>
     </el-container>
   </el-container>

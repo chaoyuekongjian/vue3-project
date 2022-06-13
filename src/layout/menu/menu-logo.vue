@@ -6,6 +6,10 @@
 </template>
 <style lang="scss" scoped>
 .logo{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 185px;
   background-color: #2b2f3a;
   height: 50px;
   border:none;

@@ -13,8 +13,6 @@ function handleClick() {
 </script>
 
 <template>
-  {{ count }}
-  <el-button @click="handleClick">add</el-button>
   <router-view />
 </template>
 
