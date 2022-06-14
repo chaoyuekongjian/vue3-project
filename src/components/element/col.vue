@@ -1,5 +1,5 @@
 <template>
-  <div class="el-col el-col-24">
+  <div class="el-col el-col-12">
     <slot></slot>
   </div>
 </template>

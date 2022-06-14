@@ -17,7 +17,6 @@ const getBreadcrumb = () => {
   if (first.path !== '/dashboard') {
     matched = [{ path: '/dashboard', meta: { title: '首页' } } as any].concat(matched)
   }
-  console.log(matched)
   // 设置面包屑导航数据
   tabs.value = matched
 }

@@ -1,19 +1,37 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import { createRouter, createWebHistory, RouteMeta, RouteRecordRaw } from 'vue-router';
 import Layout from '@/layout/index.vue'
+import { defineComponent } from 'vue';
 
-export const constantRoutes: Array<RouteRecordRaw> = [
+type Component<T = any> = 
+  | ReturnType<typeof defineComponent>
+  | (() => Promise<typeof import('*.vue')>)
+  | (() => Promise<T>)
+
+// @ts-ignore
+interface AppRouteRecordRaw extends Omit<RouteRecordRaw, 'meta'>{
+  name?: string;
+  meta?: RouteMeta;
+  path: string;
+  redirect?: string;
+  component?: Component | string;
+  alwaysShow?: boolean;
+  hidden?: boolean;
+  children?: AppRouteRecordRaw[]
+}
+
+export const constantRoutes: Array<AppRouteRecordRaw> = [
   {
     path: "/",
     component: Layout,
     redirect: "/dashboard",
     children: [
       {
-        path: "/dashboard",
+        path: "dashboard",
         component: () => import("@/layout/dashboard/index.vue"),
         name: "dashboard",
         meta: {
           title: "首页",
-          icon: "#icondashboard",
+          icon: "House",
         },
       },
     ],
@@ -24,13 +42,13 @@ export const constantRoutes: Array<RouteRecordRaw> = [
     name: "system",
     meta: {
       title: "系统管理",
-      icon: "Menu",
+      icon: "Grid",
       roles: ["sys:manage"],
       parentId: 0,
     },
     children: [
       {
-        path: "/department",
+        path: "department",
         component: () => import("@/views/department/index.vue"),
         name: "department",
         meta: {
@@ -40,7 +58,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
         },
       },
       {
-        path: "/userList",
+        path: "userList",
         component: () => import("@/views/user/user-list.vue"),
         name: "userList",
         meta: {
@@ -50,7 +68,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
         },
       },
       {
-        path: "/roleList",
+        path: "roleList",
         component: () => import("@/views/role/role-list.vue"),
         name: "roleList",
         meta: {
@@ -60,7 +78,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
         },
       },
       {
-        path: "/menuList",
+        path: "menuList",
         component: () => import("@/views/menu/menu-list.vue"),
         name: "menuList",
         meta: {
@@ -82,7 +100,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
     },
     children: [
       {
-        path: "/goodCategory",
+        path: "index",
         component: () => import("../views/goods/index.vue"),
         name: "goodCategory",
         meta: {
@@ -97,6 +115,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
     path: "/systemConfig",
     component: Layout,
     name: "systemConfig",
+    alwaysShow: true,
     meta: {
       title: "系统工具",
       icon: "Menu",
@@ -104,7 +123,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
     },
     children: [
       {
-        path: "/document",
+        path: "document",
         component: () => import("../views/system-document/index.vue"),
         name: "http://localhost:8089/swagger-ui/index.html",
         meta: {
@@ -119,7 +138,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes: constantRoutes,
+  routes: constantRoutes as RouteRecordRaw[],
 });
 
 export default router;

@@ -1,14 +1,9 @@
 <template>
-  <div>
-    <el-row :gutter="20">
-      <el-col :span="6"><div class="grid-content bg-purple" /></el-col>
-      <el-col :span="6"><div class="grid-content bg-purple" /></el-col>
-      <el-col :span="6"><div class="grid-content bg-purple" /></el-col>
-      <el-col :span="6"><div class="grid-content bg-purple" /></el-col>
-    </el-row>
-  </div>
+  <my-row>
+    <my-col><div class="grid-content bg-purple-dark" /></my-col>
+  </my-row>
 </template>
-<script setup lang='ts'>
+<script setup lang='ts'> 
 import MyRow from '@/components/element/row.vue'
 import MyCol from '@/components/element/col.vue'
 import { ref, reactive } from 'vue'
