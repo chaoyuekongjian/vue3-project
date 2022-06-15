@@ -5,7 +5,7 @@
         <el-menu-item :index="getFullPath(onlyOneChild.path)" style="color: #f4f4f5">
           <!-- 不存在下级目录 -->
           <el-icon><component class="icons" :is="onlyOneChild.meta.icon" /></el-icon>
-          <span>{{ onlyOneChild.meta.title }}</span>
+          <template #title>{{ onlyOneChild.meta.title }}</template>
         </el-menu-item>
       </AppLink>
     </template>

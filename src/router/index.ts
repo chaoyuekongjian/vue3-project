@@ -37,6 +37,21 @@ export const constantRoutes: Array<AppRouteRecordRaw> = [
     ],
   },
   {
+    path: "/todo",
+    component: Layout,
+    children: [
+      {
+        path: "index",
+        component: () => import("@/views/todo/index.vue"),
+        name: "todo",
+        meta: {
+          title: "制作",
+          icon: "House",
+        },
+      },
+    ],
+  },
+  {
     path: "/system",
     component: Layout,
     name: "system",
@@ -48,7 +63,7 @@ export const constantRoutes: Array<AppRouteRecordRaw> = [
     },
     children: [
       {
-        path: "department",
+        path: "",
         component: () => import("@/views/department/index.vue"),
         name: "department",
         meta: {

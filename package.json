@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.4",
+    "echarts": "^5.3.3",
     "element-plus": "^2.2.5",
     "path-browserify": "^1.0.1",
     "pinia": "^2.0.14",

@@ -5,7 +5,6 @@ export function isExternalLink(path: string): boolean {
 }
 
 export function resolveRoutePath(basePath: string, routePath: any) {
-  console.log(basePath, routePath, path.resolve(basePath, routePath))
   if (isExternalLink(routePath)) return routePath
   if (isExternalLink(basePath)) return basePath
   return basePath ? path.resolve(basePath, routePath) : routePath

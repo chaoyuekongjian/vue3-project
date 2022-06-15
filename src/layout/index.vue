@@ -31,9 +31,5 @@ import MenuBar from './menu/menu-bar.vue'
     display: flex;
     align-items: center;
   }
-  .main {
-    padding-top: 0;
-    // background-color: darkgray;
-  }
 }
 </style>

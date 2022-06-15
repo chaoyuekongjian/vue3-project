@@ -14,12 +14,12 @@ const route = useRoute()
 const getBreadcrumb = () => {
   let matched = route.matched.filter(item => item.meta && item.meta.title)
   const first = matched[0]
-  if (first.path !== '/dashboard') {
-    matched = [{ path: '/dashboard', meta: { title: '首页' } } as any].concat(matched)
-  }
+  // if (first.path !== '/dashboard') {
+  //   matched = [{ path: '/dashboard', meta: { title: '首页' } } as any].concat(matched)
+  // }
   // 设置面包屑导航数据
   tabs.value = matched
 }
 getBreadcrumb()
-watch(() => route.path, (val) => getBreadcrumb())
+watch(() => route.path, () => getBreadcrumb())
 </script>

@@ -14,19 +14,19 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from '@vue/reactivity';
-import { ref, reactive } from 'vue'
-import { useRoute } from 'vue-router';
+import { computed } from '@vue/reactivity'
+import { watch } from 'vue'
+import { useRoute } from 'vue-router'
 import MenuItem from './menu-item.vue'
 import MenuLogo from './menu-logo.vue'
-import appStore from '@/store/index'
-import { storeToRefs } from 'pinia';
-import { useUserStoreForSetup } from '@/store/useUserStoreForSetup';
+import { storeToRefs } from 'pinia'
+import { useUserStoreForSetup } from '@/store/useUserStoreForSetup'
+import { permission } from '@/store/permission'
 
 const userStore = useUserStoreForSetup()
 const { isCollapse } = storeToRefs(userStore)
 
-const { routers } = storeToRefs(appStore.permission)
+const { routers } = storeToRefs(permission());
 
 const route = useRoute()
 const activeIndex = computed(() => {
@@ -37,6 +37,7 @@ const activeIndex = computed(() => {
   return path
 })
 
+watch(() => route.path, (val) => console.log(val))
 
 const handleOpen = (key: string, keyPath: string[]) => {
   // console.log(key, keyPath)
