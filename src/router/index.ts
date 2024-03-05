@@ -52,6 +52,21 @@ export const constantRoutes: Array<AppRouteRecordRaw> = [
     ],
   },
   {
+    path: "/tailwindcss",
+    component: Layout,
+    children: [
+      {
+        path: "index",
+        component: () => import("@/views/tailwindcss/index.vue"),
+        name: "tailwindcss",
+        meta: {
+          title: "tailwindcss",
+          icon: "House",
+        },
+      },
+    ],
+  },
+  {
     path: "/system",
     component: Layout,
     name: "system",

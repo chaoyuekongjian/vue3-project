@@ -7,6 +7,7 @@ import Elementplus from 'element-plus'
 import 'element-plus/dist/index.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import '@/styles/index.scss'
+import './main.css'
 
 import Kot from '@kot/components'
 import '@kot/theme-chalk/index.css'
