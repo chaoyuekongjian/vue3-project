@@ -13,7 +13,7 @@ const tabs: Ref<RouteLocationMatched[]> = ref([])
 const route = useRoute()
 const getBreadcrumb = () => {
   let matched = route.matched.filter(item => item.meta && item.meta.title)
-  const first = matched[0]
+  // const first = matched[0]
   // if (first.path !== '/dashboard') {
   //   matched = [{ path: '/dashboard', meta: { title: '首页' } } as any].concat(matched)
   // }

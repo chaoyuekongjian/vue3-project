@@ -32,6 +32,21 @@
         </el-card>
       </el-col>
     </el-row>
+    <el-row :gutter="24">
+      <el-col :span="12">
+        <el-card class="box-card">
+          <template #header>
+            <div class="card-header">
+              <span>折线图</span>
+            </div>
+          </template>
+          <div ref="funnelCharts" style="height: 300px;"></div>
+        </el-card>
+      </el-col>
+    </el-row>
+    <kot-button>123123123</kot-button>
+    <kot-button type="primary">123123123</kot-button>
+    <kot-button type="danger">123123123</kot-button>
   </div>
 </template>
 
@@ -142,11 +157,83 @@ function setLineCharts() {
   option && myChart.setOption(option);
 }
 
+const funnelCharts = ref(null)
+function setFunnelCharts() {
+  var myChart = echarts.init(funnelCharts.value as unknown as HTMLElement);
+  var option;
+
+  option = {
+    title: {
+      text: 'Funnel'
+    },
+    tooltip: {
+      trigger: 'item',
+      formatter: '{a} <br/>{b} : {c}%'
+    },
+    toolbox: {
+      feature: {
+        dataView: { readOnly: false },
+        restore: {},
+        saveAsImage: {}
+      }
+    },
+    legend: {
+      data: ['Show', 'Click', 'Visit', 'Inquiry', 'Order']
+    },
+    series: [
+      {
+        name: 'Funnel',
+        type: 'funnel',
+        left: '10%',
+        top: 60,
+        bottom: 60,
+        width: '80%',
+        min: 0,
+        max: 100,
+        minSize: '0%',
+        maxSize: '100%',
+        sort: 'descending',
+        gap: 2,
+        label: {
+          show: true,
+          position: 'inside'
+        },
+        labelLine: {
+          length: 10,
+          lineStyle: {
+            width: 1,
+            type: 'solid'
+          }
+        },
+        itemStyle: {
+          borderColor: '#fff',
+          borderWidth: 1
+        },
+        emphasis: {
+          label: {
+            fontSize: 20
+          }
+        },
+        data: [
+          { value: 60, name: 'Visit' },
+          { value: 40, name: 'Inquiry' },
+          { value: 20, name: 'Order' },
+          { value: 80, name: 'Click' },
+          { value: 100, name: 'Show' }
+        ]
+      }
+    ]
+  };
+
+  option && myChart.setOption(option);
+}
+
 const loading = ref(false)
 onMounted(() => {
   setMainCharts()
   setRootCharts()
   setLineCharts()
+  setFunnelCharts()
 })
 
 </script>

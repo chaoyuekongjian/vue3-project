@@ -4,6 +4,7 @@ import { reactive } from 'vue';
 
 export const permission = defineStore('permission', () => {
   const routers = reactive(constantRoutes)
+  console.log(routers)
 
   return { routers };
 });
