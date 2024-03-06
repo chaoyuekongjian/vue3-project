@@ -67,6 +67,22 @@ export const constantRoutes: Array<AppRouteRecordRaw> = [
     ],
   },
   {
+    path: "/loading",
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: "index",
+        component: () => import("@/views/loading/index.vue"),
+        name: "loading",
+        meta: {
+          title: "loading",
+          icon: "House"
+        },
+      },
+    ],
+  },
+  {
     path: "/system",
     component: Layout,
     name: "system",

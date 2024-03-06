@@ -7,6 +7,7 @@
     :collapse="isCollapse"
     @open="handleOpen" 
     @close="handleClose"
+    :unique-opened="true"
     router
   >
     <MenuItem v-for="route in routers" :key="route.path" :item="route" :base-path="route.path" />

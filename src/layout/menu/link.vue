@@ -1,5 +1,5 @@
 <template>
-  <component :is="type" v-bind="linkProps(to)">
+  <component :is="type">
     <slot />
   </component>
 </template>
@@ -25,7 +25,7 @@ const type = computed(() => {
 })
 
 function linkProps(to: String) {
-
+  console.log(to)
 }
 </script>
 <style scoped lang='scss'>
